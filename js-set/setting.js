@@ -129,6 +129,25 @@ function toggleAudio() {
     AudioBGM.play();
     isAudioPlaying = true;
   }
+	if (navigator.mediaDevices && navigator.mediaDevices.volume) {
+    navigator.mediaDevices.volume
+      .requestAnimationFrame(function(volume) {
+        if (volume > 5) {
+          AudioBGM.play();
+        }
+		else {
+          AudioBGM.pause();
+		}
+      })
+      .catch(function() {
+        // Tangani kesalahan jika tidak dapat mengakses kontrol volume
+        console.error("Tidak dapat mengakses kontrol volume");
+      });
+  } else {
+    // Tangani jika perangkat tidak mendukung akses kontrol volume
+    console.error("Perangkat tidak mendukung akses kontrol volume");
+  }
+	
   updateIcon();
 }
 
@@ -177,6 +196,7 @@ document.addEventListener('keyup', function(event) {
     }, 1280); // Blok tombol Shift + P selama 5 detik
   }
 });
+
 
 var audioElement = document.getElementById('musik');
 var volumeSlider = document.getElementById('volumeSlider');
