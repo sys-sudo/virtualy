@@ -115,6 +115,7 @@ var ListAudio = [
   'https://cdn.discordapp.com/attachments/1109603698507788288/1110543701589114880/GTA_San_Andreas_Theme_Song_Remix.mp3',
   'https://cdn.discordapp.com/attachments/1109603698507788288/1110545503336276089/Meraih-Bintang.mp3'
 ];
+
 var AudioBGM = document.getElementById('musik');
 var MechKeyboard = document.getElementById('mechkeyboard');
 var isAudioPlaying = true;
@@ -129,45 +130,8 @@ function toggleAudio() {
     AudioBGM.play();
     isAudioPlaying = true;
   }
-	if (navigator.mediaDevices && navigator.mediaDevices.volume) {
-    navigator.mediaDevices.volume
-      .requestAnimationFrame(function(volume) {
-        if (volume > 5) {
-          AudioBGM.play();
-        }
-		else {
-          AudioBGM.pause();
-		}
-      })
-      .catch(function() {
-        // Tangani kesalahan jika tidak dapat mengakses kontrol volume
-        console.error("Tidak dapat mengakses kontrol volume");
-      });
-  } else {
-    // Tangani jika perangkat tidak mendukung akses kontrol volume
-    console.error("Perangkat tidak mendukung akses kontrol volume");
-  }
 	
   updateIcon();
-}
-function AudioDeviceHP() {
-  // Periksa apakah tombol volume up ditekan
-  if (navigator.mediaDevices && navigator.mediaDevices.volume) {
-    navigator.mediaDevices.volume
-      .requestAnimationFrame(function(volume) {
-        if (volume > 0) {
-          var audio = document.getElementById("musik");
-          audio.play();
-        }
-      })
-      .catch(function() {
-        // Tangani kesalahan jika tidak dapat mengakses kontrol volume
-        console.error("Tidak dapat mengakses kontrol volume");
-      });
-  } else {
-    // Tangani jika perangkat tidak mendukung akses kontrol volume
-    console.error("Perangkat tidak mendukung akses kontrol volume");
-  }
 }
 function updateIcon() {
   var playIcon = document.getElementById('playIcon');
@@ -197,7 +161,6 @@ function playNextAudio() {
   isAudioPlaying = true;
   updateIcon();
 }
-AudioDeviceHP()
 RandomBGM();
 
 AudioBGM.addEventListener('ended', function() {
