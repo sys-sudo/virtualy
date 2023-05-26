@@ -1,6 +1,7 @@
 var statusIcon = document.getElementById("status-icon");
 var statusText = document.getElementById("status-text");
 var HeartBeat = document.getElementById("heartbeat");
+
 function checkOnlineStatus() {
   var isOnline = navigator.onLine;
   if (isOnline) {
@@ -8,23 +9,23 @@ function checkOnlineStatus() {
     statusIcon.classList.add("online");
     statusIcon.setAttribute("title", "Online");
     statusText.textContent = "Online";
-	HeartBeat.classList.remove("offline");
-	HeartBeat.classList.add("online");
-	HeartBeat.setAttribute("title", "Online");
+    HeartBeat.classList.remove("offline");
+    HeartBeat.classList.add("online");
+    HeartBeat.setAttribute("title", "Online");
   } else {
     statusIcon.classList.remove("online");
     statusIcon.classList.add("offline");
     statusIcon.setAttribute("title", "Offline");
     statusText.textContent = "Offline";
-	HeartBeat.classList.remove("online");
+    HeartBeat.classList.remove("online");
     HeartBeat.classList.add("offline");
-	HeartBeat.setAttribute("title", "Offline");
+    HeartBeat.setAttribute("title", "Offline");
   }
 }
+
 window.addEventListener("load", checkOnlineStatus);
 window.addEventListener("online", checkOnlineStatus);
 window.addEventListener("offline", checkOnlineStatus);
-
 
 var ketversi = document.getElementById("keteranganversi");
 
@@ -44,7 +45,7 @@ function randomcolorRed() {
 }
 
 function checkVersiStatus() {
-	randomcolorversistatus();
+  randomcolorversistatus();
   var isOnline = navigator.onLine;
   if (isOnline) {
     ketversi.classList.remove("offline");
@@ -63,52 +64,57 @@ window.addEventListener("load", checkVersiStatus);
 window.addEventListener("online", checkVersiStatus);
 window.addEventListener("offline", checkVersiStatus);
 
-
 var batasGaris1 = document.getElementById("garisPembatas1");
+
 function Batas1() {
-	var isOnline = navigator.onLine;
-	if (isOnline) {
-		batasGaris1.textContent = "|";
-	} else {
-		batasGaris1.textContent = "<|>";
-	}
+  var isOnline = navigator.onLine;
+  if (isOnline) {
+    batasGaris1.textContent = "|";
+  } else {
+    batasGaris1.textContent = "<|>";
+  }
 }
+
 window.addEventListener("load", Batas1);
 window.addEventListener("online", Batas1);
 window.addEventListener("offline", Batas1);
 
-
 var batasGaris2 = document.getElementById("garisPembatas2");
+
 function Batas2() {
-	var isOnline = navigator.onLine;
-	if (isOnline) {
-		batasGaris2.textContent = "|";
-	} else {
-		batasGaris2.textContent = "<|>";
-	}
+  var isOnline = navigator.onLine;
+  if (isOnline) {
+    batasGaris2.textContent = "|";
+  } else {
+    batasGaris2.textContent = "<|>";
+  }
 }
+
 window.addEventListener("load", Batas2);
 window.addEventListener("online", Batas2);
 window.addEventListener("offline", Batas2);
 
-
 function updateClock() {
-      var currentTime = new Date();
-      var hours = currentTime.getHours();
-      var minutes = currentTime.getMinutes();
-      var seconds = currentTime.getSeconds();
-      hours = (hours < 10 ? "0" : "") + hours;
-      minutes = (minutes < 10 ? "0" : "") + minutes;
-      seconds = (seconds < 10 ? "0" : "") + seconds;
-      var timeString = hours + ":" + minutes + ":" + seconds;
-      document.getElementById("clock").innerHTML = timeString;
-    }
-    setInterval(updateClock, 1000);
+  var currentTime = new Date();
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  hours = (hours < 10 ? "0" : "") + hours;
+  minutes = (minutes < 10 ? "0" : "") + minutes;
+  seconds = (seconds < 10 ? "0" : "") + seconds;
+  var timeString = hours + ":" + minutes + ":" + seconds;
+  document.getElementById("clock").innerHTML = timeString;
+}
 
-
-  var ListAudio = [
-    'https://cdn.discordapp.com/attachments/1109603698507788288/1109611079128055950/Event.mp3', 'https://cdn.discordapp.com/attachments/1109603698507788288/1109603981715587214/GTA_V_Welcome_to_Los_Santos.mp3', 'https://cdn.discordapp.com/attachments/1109603698507788288/1110340838573232319/Tanah_Airku.mp3', 'https://cdn.discordapp.com/attachments/1109603698507788288/1110346457392877658/Around_The-World.mp3', 'https://cdn.discordapp.com/attachments/1109603698507788288/1110543701589114880/GTA_San_Andreas_Theme_Song_Remix.mp3', 'https://cdn.discordapp.com/attachments/1109603698507788288/1110545503336276089/Meraih-Bintang.mp3'
-  ];
+setInterval(updateClock, 1000);
+var ListAudio = [
+  'https://cdn.discordapp.com/attachments/1109603698507788288/1109611079128055950/Event.mp3',
+  'https://cdn.discordapp.com/attachments/1109603698507788288/1109603981715587214/GTA_V_Welcome_to_Los_Santos.mp3',
+  'https://cdn.discordapp.com/attachments/1109603698507788288/1110340838573232319/Tanah_Airku.mp3',
+  'https://cdn.discordapp.com/attachments/1109603698507788288/1110346457392877658/Around_The-World.mp3',
+  'https://cdn.discordapp.com/attachments/1109603698507788288/1110543701589114880/GTA_San_Andreas_Theme_Song_Remix.mp3',
+  'https://cdn.discordapp.com/attachments/1109603698507788288/1110545503336276089/Meraih-Bintang.mp3'
+];
 var AudioBGM = document.getElementById('musik');
 var MechKeyboard = document.getElementById('mechkeyboard');
 var isAudioPlaying = true;
@@ -214,3 +220,57 @@ document.addEventListener('mousemove', function(event) {
     volumeText.style.display = 'block';
   }
 });
+
+// Lazy loading untuk audio
+AudioBGM.setAttribute('loading', 'lazy');
+function lazyLoad() {
+      var lazyElements = Array.from(document.querySelectorAll('[data-src]'));
+
+      if ('IntersectionObserver' in window) {
+        var lazyObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var lazyElement = entry.target;
+              var src = lazyElement.getAttribute('data-src');
+              var href = lazyElement.getAttribute('data-href');
+
+              if (src) {
+                lazyElement.setAttribute('src', src);
+                lazyElement.removeAttribute('data-src');
+              }
+
+              if (href) {
+                lazyElement.setAttribute('href', href);
+                lazyElement.removeAttribute('data-href');
+              }
+
+              lazyObserver.unobserve(lazyElement);
+            }
+          });
+        });
+
+        lazyElements.forEach(function (lazyElement) {
+          lazyObserver.observe(lazyElement);
+        });
+      } else {
+        // Fallback for browsers that don't support Intersection Observer
+        lazyElements.forEach(function (lazyElement) {
+          var src = lazyElement.getAttribute('data-src');
+          var href = lazyElement.getAttribute('data-href');
+
+          if (src) {
+            lazyElement.setAttribute('src', src);
+            lazyElement.removeAttribute('data-src');
+          }
+
+          if (href) {
+            lazyElement.setAttribute('href', href);
+            lazyElement.removeAttribute('data-href');
+          }
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      lazyLoad();
+    });
