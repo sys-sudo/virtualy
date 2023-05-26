@@ -150,7 +150,25 @@ function toggleAudio() {
 	
   updateIcon();
 }
-
+function AudioDeviceHP() {
+  // Periksa apakah tombol volume up ditekan
+  if (navigator.mediaDevices && navigator.mediaDevices.volume) {
+    navigator.mediaDevices.volume
+      .requestAnimationFrame(function(volume) {
+        if (volume > 0) {
+          var audio = document.getElementById("musik");
+          audio.play();
+        }
+      })
+      .catch(function() {
+        // Tangani kesalahan jika tidak dapat mengakses kontrol volume
+        console.error("Tidak dapat mengakses kontrol volume");
+      });
+  } else {
+    // Tangani jika perangkat tidak mendukung akses kontrol volume
+    console.error("Perangkat tidak mendukung akses kontrol volume");
+  }
+}
 function updateIcon() {
   var playIcon = document.getElementById('playIcon');
   var stopIcon = document.getElementById('stopIcon');
@@ -179,7 +197,7 @@ function playNextAudio() {
   isAudioPlaying = true;
   updateIcon();
 }
-
+AudioDeviceHP()
 RandomBGM();
 
 AudioBGM.addEventListener('ended', function() {
