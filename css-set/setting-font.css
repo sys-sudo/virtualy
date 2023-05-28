@@ -1,12 +1,12 @@
 /* Fira Sans */
 @font-face {
 	font-family: 'Fira_Sans-reguler';
-	src: url("../../data-set/font/Fira_Sans/FiraSans-Regular.ttf") format('truetype');
+	src: url("../data-set/font/Fira_Sans/FiraSans-Regular.ttf") format('truetype');
 }
 /* Roboto Condensed */
 @font-face {
 	font-family: 'Roboto_Condensed-reguler';
-	src: url("../../data-set/font/Roboto_Condensed/RobotoCondensed-Regular.ttf") format('truetype');
+	src: url("../data-set/font/Roboto_Condensed/RobotoCondensed-Regular.ttf") format('truetype');
 }
 
 /* --------------- */
