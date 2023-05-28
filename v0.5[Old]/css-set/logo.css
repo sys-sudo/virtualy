@@ -1,0 +1,47 @@
+.Logo {
+	width: 90px;
+	height: 90px;
+}
+.kaca {
+  position: absolute;
+  animation: kaca-animasi 5s infinite alternate;
+}
+
+@keyframes kaca-animasi {
+  0% {
+    transform: translateX(-50px) translateY(-77px);
+  }
+	10% {
+		transform: translateX(25px) translateY(-88px);
+	}
+	21% {
+		transform: translateX(20px) translateY(-88px);
+	}
+	26% {
+		transform: translateX(44px) translateY(-99px);
+	}
+	31% {
+		transform: translateX(100px) translateY(-86px);
+	}
+	41% {
+		transform: translateX(80px) translateY(-77px);
+	}
+	50% {
+		transform: translateX(-100px) translateY(-74px);
+	}
+	55% {
+		transform: translateX(-90px) translateY(-78px);
+	}
+	70% {
+		transform: translateX(-100px) translateY(-79px);
+	}
+	88% {
+		transform: translateX(-50px) translateY(-77px);
+	}
+	99% {
+		transform: translateX(-49px) translateY(-77px);
+	}
+	100% {
+		transform: translateX(-50px) translateY(-77px);
+	}
+}
